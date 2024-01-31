@@ -1,0 +1,16 @@
+{
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "[blade]": {
+        "editor.defaultFormatter": "shufo.vscode-blade-formatter"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "php.validate.executablePath": "D:/laragon/bin/php/php-8.1.10-Win32-vs16-x64",
+    "php.executablePath": "D:/laragon/bin/php/php-8.1.10-Win32-vs16-x64",
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
