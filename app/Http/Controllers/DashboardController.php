@@ -31,7 +31,7 @@ class DashboardController extends Controller
         $total_saldo = $total_kredit - $total_debit; // Gantilah dengan logika sesuai kebutuhan
         $title = "Dashboard"; // Gantilah dengan logika sesuai kebutuhan
 
-        return view('dashboard', compact('title', 'total_debit', 'total_kredit', 'total_saldo', 'bulan'));
+        return view('Dashboard', compact('title', 'total_debit', 'total_kredit', 'total_saldo', 'bulan'));
     }
 
     public function ambil_bulan($bulan)
