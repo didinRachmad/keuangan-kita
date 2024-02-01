@@ -5792,14 +5792,10 @@ body.layout-3 .main-footer {
   width: 100%;
 }
 
-.main-sidebar .sidebar-menu li a:hover {
-  /* background-color: #f8fafb; */
-}
-
 .main-sidebar .sidebar-menu li.active a {
-  color: #0e7b7f;
+  color: #fff;
   /* font-weight: 600; */
-  background-color: #f8fafb;
+  background-color: #0e7b7f;
 }
 
 .main-sidebar .sidebar-menu li.active a.has-dropdown:after {

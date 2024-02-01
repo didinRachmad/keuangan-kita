@@ -515,7 +515,7 @@
             </div>
             <ul class="sidebar-menu">
                 <li class="menu-header mt-4">Dashboard</li>
-                <li class="{{ request()->is('dashboard') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Dashboard') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('dashboard') }}">
                         <i class="fas fa-fire"></i>
                         <span>Dashboard</span>
@@ -525,32 +525,32 @@
                 <!-- Tambahkan kategori dan produk sesuai kebutuhan -->
 
                 <li class="menu-header">Master</li>
-                <li class="{{ request()->is('/Akun') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Akun.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/Akun') }}">
                         <i class="fas fa-cash-register"></i>
                         <span>Akun</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('/Kategori') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Kategori.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/Kategori') }}">
                         <i class="fas fa-layer-group"></i>
                         <span>Kategori</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('/Anggota') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Anggota.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/Anggota') }}">
                         <i class="fas fa-users"></i>
                         <span>Anggota</span>
                     </a>
                 </li>
                 <li class="menu-header">Transaksi</li>
-                <li class="{{ request()->is('/Pengeluaran') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Pengeluaran.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/Pengeluaran') }}">
                         <i class="fas fa-arrow-alt-circle-left"></i>
                         <span>Pengeluaran</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('/Pemasukan') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('Pemasukan.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('/Pemasukan') }}">
                         <i class="fas fa-arrow-alt-circle-right"></i>
                         <span>Pemasukan</span>
@@ -558,7 +558,7 @@
                 </li>
 
                 <li class="menu-header">Profil</li>
-                <li class="{{ request()->is('profil') ? 'active' : '' }}">
+                <li class="{{ request()->routeIs('profil.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('profil') }}">
                         <i class="fas fa-store"></i>
                         <span>Profil</span>
