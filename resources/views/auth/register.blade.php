@@ -28,6 +28,24 @@
                             </div>
 
                             <div class="row mb-3">
+                                <label for="nama_keluarga"
+                                    class="col-md-4 col-form-label text-md-end">{{ __('Nama Keluarga') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="nama_keluarga" type="text"
+                                        class="form-control @error('nama_keluarga') is-invalid @enderror"
+                                        name="nama_keluarga" value="{{ old('nama_keluarga') }}" required
+                                        autocomplete="nama_keluarga" autofocus>
+
+                                    @error('nama_keluarga')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="email"
                                     class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 

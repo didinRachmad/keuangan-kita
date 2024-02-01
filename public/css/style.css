@@ -4045,7 +4045,7 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 .swal2-popup .swal2-styled {
-  margin: 0 .3125em;
+  margin: 0.3125em !important;
   padding: .625em 2em;
   font-weight: 500;
   box-shadow: none

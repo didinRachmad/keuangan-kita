@@ -138,276 +138,6 @@
         }
     </style>
 
-    {{-- <style>
-        p {
-            margin: 0;
-        }
-
-        .navbar-dark .navbar-nav {
-            color: #000;
-        }
-
-        .navbar-dark .navbar-toggler {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .navbar-dark .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-
-        .navbar-dark .navbar-nav:hover,
-        .navbar-dark .navbar-nav:focus {
-            color: #000;
-        }
-
-        .navbar-dark .navbar-nav .nav-item {
-            padding-bottom: 0.2rem;
-            padding-top: 0.2rem;
-        }
-
-
-        table.dataTable thead th {
-            padding: 5px, 0;
-        }
-
-        table.dataTable tbody td {
-            padding: 2px 5px;
-        }
-
-        .myTable,
-        .TableOrder,
-        .TableKandidat,
-        .tableOrderHapus {
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 5px 0;
-        }
-
-        table.dataTable thead>tr>th.sorting {
-            padding: 5px;
-        }
-
-        .dataTables_wrapper .dataTables_length select,
-        .dataTables_wrapper .dataTables_filter input,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
-        .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
-            /* color: #000 !important; */
-        }
-
-        .dataTables_wrapper .dataTables_length select option {
-            background-color: transparent;
-        }
-
-        /* menghapus style button.dt-button */
-        button.dt-button,
-        div.dt-button,
-        a.dt-button,
-        input.dt-button {
-            /* color: #000; */
-            background-color: #007bff;
-            border-color: #007bff;
-            font-size: 0.8rem;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.2rem;
-        }
-
-        button.dt-button:hover:not(.disabled),
-        div.dt-button:hover:not(.disabled),
-        a.dt-button:hover:not(.disabled),
-        input.dt-button:hover:not(.disabled) {
-            border: 0;
-            /* color: #000; */
-            background-color: #0069d9;
-            border-color: #0062cc;
-
-        }
-
-        .btn-close {
-            /* background-color: #eb3a3a; */
-            color: #fff;
-        }
-
-        .btn-sm {
-            font-size: 0.8rem;
-            font-weight: 700;
-            transition: transform .01s;
-        }
-
-        .btn-sm:hover {
-            transform: scale(1.05);
-        }
-
-        .bg-btn {
-            width: 70%;
-        }
-
-        .action {
-            max-width: 150px;
-        }
-    </style>
-    <style>
-        .card {
-            box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(20px);
-        }
-
-        .form-control,
-        .form-control::placeholder,
-        .form-control:-webkit-autofill,
-        .form-select,
-        .form-control:focus {
-            background-color: transparent !important;
-            font-size: 0.8rem !important;
-            /* font-weight: 700; */
-        }
-
-        .form-control[type="search"] {
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .date::-webkit-calendar-picker-indicator {
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='black' class='bi bi-calendar' viewBox='0 0 16 16'%3E%3Cpath d='M11 0v1h1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h1V0a1 1 0 0 1 1-1 1 1 0 0 1 1 1v1h4V0a1 1 0 0 1 1 1zM1 3v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3H1z' /%3E%3C/svg%3E") no-repeat;
-            background-size: 90% 90%;
-        }
-
-        select.form-select::after {
-            font-weight: bold;
-        }
-
-        .form-select option {
-            /* background-color: #02102099;
-            color: #000; */
-        }
-
-        .form-select-sm~.select2-container--bootstrap-5 .select2-selection {
-            font-size: 0.8rem !important;
-        }
-
-        /* .input-group-sm>.btn,
-        .input-group-sm>.form-control,
-        .input-group-sm>.form-select-sm,
-        .input-group-sm>.input-group-text {
-            font-size: 0.8rem !important;
-        } */
-
-        .input-group>.input-group-text~.select2-container--bootstrap-5 .select2-selection {
-            background-color: transparent;
-        }
-
-        .select2-results__option {
-            font-size: 0.8rem !important;
-        }
-
-        .select2-search__field {
-            height: 25px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered {
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .select2-container--bootstrap-5 .select2-selection--single .select2-selection__rendered .select2-selection__placeholder {
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .ui-autocomplete {
-            max-height: 120px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            overflow-y: scroll;
-            /* Gunakan "scroll" daripada "auto" */
-            overflow-x: hidden;
-            /* background-color: rgba(1, 9, 19, 0.9); */
-            /* color: #000; */
-            border-radius: 0 0 10px 10px;
-        }
-
-        /* Menghilangkan scrollbar untuk WebKit (Chrome, Safari, Opera) */
-        .ui-autocomplete::-webkit-scrollbar {
-            width: 0.5em;
-            /* Atur lebar scrollbar */
-        }
-
-        .ui-autocomplete::-webkit-scrollbar-thumb {
-            background-color: transparent;
-            /* Atur warna thumb scrollbar */
-        }
-
-        .ui-autocomplete::-webkit-scrollbar-track {
-            background-color: transparent;
-            /* Atur warna track scrollbar */
-        }
-
-        .ui-autocomplete.ui-menu .ui-menu-item {
-            padding: 5px;
-        }
-
-        .form-check-input[type="checkbox"]:hover {
-            cursor: pointer;
-        }
-
-        .form-check-input[type="checkbox"] {
-            width: 22px;
-            /* Sesuaikan ukuran sesuai kebutuhan */
-            height: 12px;
-            /* Sesuaikan ukuran sesuai kebutuhan */
-            margin: auto;
-        }
-
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 45px;
-            color: #fff;
-            z-index: 1054;
-            text-align: center;
-            transition: width 0.2s ease-in-out;
-        }
-
-        #sidebar .logo {
-            width: 30px;
-        }
-
-        .navbar-nav li a {
-            position: relative;
-        }
-
-        /* Gaya teks mengambang */
-        /* Gaya teks mengambang */
-        .navbar-nav li a::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            top: 0;
-            left: 110%;
-            margin-top: -0.6rem;
-            padding: 1.7em 3em;
-            white-space: nowrap;
-            /* font-size: 0.8rem; */
-            font-weight: bolder;
-            border-radius: 0 5px 5px 0;
-            opacity: 0;
-            transition: transform 0.1s ease-in-out, opacity 0.1s ease-in-out 0.3s;
-            pointer-events: none;
-            transform: translateX(-2%);
-        }
-
-        /* Menampilkan teks mengambang saat hover pada element a */
-        .navbar-nav li a:hover::after {
-            opacity: 1;
-            transition-delay: 0s;
-            transform: translateX(3%);
-        }
-    </style> --}}
-
     <style>
         @media print {
             .table {
@@ -451,11 +181,12 @@
     </script>
 </head>
 
+{{-- LOADING OVERLAY --}}
+<div class="overlay">
+    <i class="fa-brands fa-instalod"></i>
+</div>
+
 <body class="scroll dark">
-    {{-- LOADING OVERLAY --}}
-    <div class="overlay">
-        <i class="fa-brands fa-instalod"></i>
-    </div>
 
     <div class="navbar-bg"></div>
     <nav class="navbar main-navbar">
@@ -505,12 +236,12 @@
             <div class="sidebar-brand">
                 <a href="{{ url('dashboard') }}" class="text-primary fw-bold" style="font-size: 16px;"><i
                         class="fas fa-book-open"></i> Keuangan Kita</a>
-                @if (strlen(Auth::user()->namaUsaha) > 25)
-                    <p class="text-primary fw-bold"><span class="badge badge-primary"> <i class="fas fa-store"></i>
-                            {{ substr(Auth::user()->namaUsaha, 0, 23) . '..' }}</span></p>
+                @if (strlen(Auth::user()->nama_keluarga) > 25)
+                    <p class="text-primary fw-bold"><span class="badge badge-primary"> <i class="fas fa-home"></i>
+                            {{ substr(Auth::user()->nama_keluarga, 0, 23) . '..' }}</span></p>
                 @else
-                    <p class="text-primary fw-bold"><span class="badge badge-primary"> <i class="fas fa-store"></i>
-                            {{ Auth::user()->namaUsaha }}</span></p>
+                    <p class="text-primary fw-bold"><span class="badge badge-primary"> <i class="fas fa-home"></i>
+                            {{ Auth::user()->nama_keluarga }}</span></p>
                 @endif
             </div>
             <ul class="sidebar-menu">
@@ -560,7 +291,7 @@
                 <li class="menu-header">Profil</li>
                 <li class="{{ request()->routeIs('profil.index') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ url('profil') }}">
-                        <i class="fas fa-store"></i>
+                        <i class="fas fa-house-user"></i>
                         <span>Profil</span>
                     </a>
                 </li>
@@ -652,9 +383,6 @@
         <div class="main-wrapper pb-5">
             <main>
                 @yield('content')
-                @include('modals.loading-modal')
-                @include('modals.success-modal')
-                @include('modals.error-modal')
             </main>
         </div>
     </div>

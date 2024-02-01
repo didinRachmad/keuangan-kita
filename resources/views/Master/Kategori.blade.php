@@ -37,13 +37,13 @@
                                     <td>{{ $data->nama }}</td>
                                     <td>{{ $data->jenis }}</td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning btnEditKategori"
+                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditKategori"
                                             data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
                                             data-jenis="{{ $data->jenis }}">
-                                            Edit
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="{{ url('Kategori/hapus_kategori') }}/" class="btn btn-danger tombol-hapus"
-                                            data-id="{{ $data->id }}">Hapus</a>
+                                            data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
                                         <form id="form-hapus" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="{{ asset('img/logo.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -62,9 +62,6 @@
     <div class="wrapper my-5">
         <main>
             @yield('content')
-            @include('modals.loading-modal')
-            @include('modals.success-modal')
-            @include('modals.error-modal')
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -88,7 +85,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>
+    <script src="{{ asset('js/myjs.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+    <script src="{{ asset('js/stisla.js') }}"></script>
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
 </body>
 
 </html>

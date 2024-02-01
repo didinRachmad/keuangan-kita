@@ -83,14 +83,15 @@
                                     <td class="text-center fw-bolder total_transaksi">
                                         {{ number_format($data->total_transaksi, 0, ',', '.') }}</td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning btnEditPemasukan"
+                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditPemasukan"
                                             data-id="{{ $data->id }}" data-keterangan="{{ $data->keterangan }}"
                                             data-tanggal_transaksi="{{ \Carbon\Carbon::parse($data->tanggal_transaksi)->format('d-m-Y') }}"
                                             data-total_transaksi="{{ number_format($data->total_transaksi, 0, ',', '.') }}">
-                                            Edit
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="{{ url('Pemasukan/hapus_pemasukan') }}/"
-                                            class="btn btn-danger tombol-hapus" data-id="{{ $data->id }}">Hapus</a>
+                                            class="btn btn-danger tombol-hapus" data-id="{{ $data->id }}"><i
+                                                class="fas fa-trash-alt"></i></a>
                                         <form id="form-hapus" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')

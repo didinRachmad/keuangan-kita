@@ -43,14 +43,14 @@
                                     <td>{{ $data->email }}</td>
                                     <td>{{ $data->no_telp }}</td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning btnEditAnggota"
+                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditAnggota"
                                             data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
                                             data-hubungan="{{ $data->hubungan }}" data-tgl_lahir="{{ $data->tgl_lahir }}"
                                             data-email="{{ $data->email }}" data-no_telp="{{ $data->no_telp }}">
-                                            Edit
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="{{ url('Anggota/hapus_anggota') }}/" class="btn btn-danger tombol-hapus"
-                                            data-id="{{ $data->id }}">Hapus</a>
+                                            data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
                                         <form id="form-hapus" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')

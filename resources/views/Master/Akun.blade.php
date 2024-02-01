@@ -39,14 +39,14 @@
                                     <td>{{ $data->jenis }}</td>
                                     <td class="text-end">{{ number_format($data->saldo_awal, 0, ',', '.') }}</td>
                                     <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning btnEditAkun"
+                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditAkun"
                                             data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
                                             data-jenis="{{ $data->jenis }}"
                                             data-saldo_awal="{{ number_format($data->saldo_awal, 0, ',', '.') }}">
-                                            Edit
+                                            <i class="fas fa-edit"></i>
                                         </a>
                                         <a href="{{ url('Akun/hapus_akun') }}/" class="btn btn-danger tombol-hapus"
-                                            data-id="{{ $data->id }}">Hapus</a>
+                                            data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
                                         <form id="form-hapus" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')
