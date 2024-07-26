@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('akuns', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('id_keluarga');
+            $table->foreign('id_keluarga')->references('id')->on('keluargas')->onDelete('set null');
             $table->string('nama');
             $table->string('jenis');
             $table->decimal('saldo_awal', 20, 2)->default(0);

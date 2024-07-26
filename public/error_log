@@ -1,0 +1,5 @@
+[01-Feb-2024 07:05:52 UTC] PHP Warning:  require(/home/n1578056/public_html/keuangan-kita/public/../vendor/autoload.php): Failed to open stream: No such file or directory in /home/n1578056/public_html/keuangan-kita/public/index.php on line 34
+[01-Feb-2024 07:05:52 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/n1578056/public_html/keuangan-kita/public/../vendor/autoload.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/n1578056/public_html/keuangan-kita/public/index.php:34
+Stack trace:
+#0 {main}
+  thrown in /home/n1578056/public_html/keuangan-kita/public/index.php on line 34

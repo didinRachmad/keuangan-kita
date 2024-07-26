@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\Log;
 class Akun extends Model
 {
     use HasFactory;
-    protected $fillable = ['nama', 'jenis', 'saldo_awal', 'user_id'];
+    protected $fillable = ['nama', 'jenis', 'saldo_awal', 'id_keluarga'];
 
-    public static function getAkun($userId)
+    public static function getAkun($id_keluarga)
     {
-        return self::where('user_id', $userId)->get();
+        return self::where('id_keluarga', $id_keluarga)->orderBy('id', 'desc')->get();
     }
 
-    public static function createAkun($data, $user_id)
+    public static function createAkun($data, $id_keluarga)
     {
-        return DB::transaction(function () use ($data, $user_id) {
+        return DB::transaction(function () use ($data, $id_keluarga) {
             try {
                 $akun = new self();
-                $akun->user_id = $user_id;
+                $akun->id_keluarga = $id_keluarga;
                 $akun->nama = $data['nama'];
                 $akun->jenis = $data['jenis'];
                 $akun->saldo_awal = str_replace('.', '', $data['saldo_awal']);
@@ -36,10 +36,10 @@ class Akun extends Model
         });
     }
 
-    public static function updateAkun($id, $userId, $data)
+    public static function updateAkun($id, $id_keluarga, $data)
     {
-        return DB::transaction(function () use ($id, $userId, $data) {
-            $akun = self::where('id', $id)->where('user_id', $userId)->first();
+        return DB::transaction(function () use ($id, $id_keluarga, $data) {
+            $akun = self::where('id', $id)->where('id_keluarga', $id_keluarga)->first();
 
             if (!$akun) {
                 return false;
@@ -57,11 +57,11 @@ class Akun extends Model
         });
     }
 
-    public static function deleteAkun($user_id, $id)
+    public static function deleteAkun($id_keluarga, $id)
     {
-        return DB::transaction(function () use ($user_id, $id) {
+        return DB::transaction(function () use ($id_keluarga, $id) {
             try {
-                $akun = self::where('user_id', $user_id)->where('id', $id)->first();
+                $akun = self::where('id_keluarga', $id_keluarga)->where('id', $id)->first();
 
                 if ($akun) {
                     $akun->delete();

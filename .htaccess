@@ -1,3 +1,36 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine On RewriteRule ^(.*)$ public/$1 [L]
+    RewriteEngine On
+
+    # Pastikan THE_REQUEST tidak menyertakan '/public/' untuk mencegah loop
+    RewriteCond %{THE_REQUEST} !/public/ [NC]
+
+    # Pastikan REQUEST_URI tidak dimulai dengan '/public/' untuk mencegah loop
+    RewriteCond %{REQUEST_URI} !^/public/ [NC]
+
+    # Pastikan REQUEST_FILENAME bukan direktori yang ada
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Pastikan REQUEST_FILENAME bukan file yang ada
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Atur aturan untuk mengarahkan permintaan ke 'public/' dari proyek
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>
+
+# Block access to .env file
+<Files .env>
+    order allow,deny
+    Deny from all
+</Files>
+
+# Protect .htaccess files
+<Files ~ "^\.ht">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# General security rules
+<FilesMatch "(^\.|composer\.json|composer\.lock|\.env|\.git)">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>

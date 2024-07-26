@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi\Pengeluaran;
+use App\Models\Transaksi\Pemasukan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -11,10 +14,10 @@ class DashboardController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -23,29 +26,35 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // Tambahkan logika untuk mengambil data total pemasukan dan pengeluaran dari periode tertentu
-        $bulan = date('n');
-        $bulan = $this->ambil_bulan($bulan);
-        $total_debit = 1000000; // Gantilah dengan logika sesuai kebutuhan
-        $total_kredit = 4500000; // Gantilah dengan logika sesuai kebutuhan
-        $total_saldo = $total_kredit - $total_debit; // Gantilah dengan logika sesuai kebutuhan
-        $title = "Dashboard"; // Gantilah dengan logika sesuai kebutuhan
+        $id_keluarga = Auth::user()->id_keluarga;
+        $getMonth = date('m');
+        $getYear = date('Y');
+        $bulan = $this->ambil_bulan($getMonth);
 
-        return view('Dashboard', compact('title', 'total_debit', 'total_kredit', 'total_saldo', 'bulan'));
+        $total_kredit_bulan = Pemasukan::where('id_keluarga', $id_keluarga)->whereMonth('tgl_transaksi', $getMonth)->sum('total_transaksi');
+        $total_debit_bulan = Pengeluaran::where('id_keluarga', $id_keluarga)->whereMonth('tgl_transaksi', $getMonth)->sum('total_transaksi');
+        $total_saldo_bulan = $total_kredit_bulan - $total_debit_bulan;
+
+        $total_kredit_tahun = Pemasukan::where('id_keluarga', $id_keluarga)->whereYear('tgl_transaksi', $getYear)->sum('total_transaksi');
+        $total_debit_tahun = Pengeluaran::where('id_keluarga', $id_keluarga)->whereYear('tgl_transaksi', $getYear)->sum('total_transaksi');
+        $total_saldo_tahun = $total_kredit_tahun - $total_debit_tahun;
+        $title = "Dashboard";
+
+        return view('Dashboard', compact('title', 'total_debit_bulan', 'total_kredit_bulan', 'total_saldo_bulan', 'total_debit_tahun', 'total_kredit_tahun', 'total_saldo_tahun', 'bulan'));
     }
 
     public function ambil_bulan($bulan)
     {
         $data = array(
-            '1' => 'Januari',
-            '2' => 'Februari',
-            '3' => 'Maret',
-            '4' => 'April',
-            '5' => 'Mei',
-            '6' => 'Juni',
-            '7' => 'Juli',
-            '8' => 'Agustus',
-            '9' => 'September',
+            '01' => 'Januari',
+            '02' => 'Februari',
+            '03' => 'Maret',
+            '04' => 'April',
+            '05' => 'Mei',
+            '06' => 'Juni',
+            '07' => 'Juli',
+            '08' => 'Agustus',
+            '09' => 'September',
             '10' => 'Oktober',
             '11' => 'November',
             '12' => 'Desember',

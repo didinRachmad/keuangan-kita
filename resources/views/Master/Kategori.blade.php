@@ -17,46 +17,51 @@
         <section class="section">
             <div class="row mt-5">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-primary mt-1 mb-3" data-bs-toggle="modal" id="btnTambahKategori">
+                    <button type="button" class="btn btn-primary shadow-light mt-1 mb-3" data-bs-toggle="modal"
+                        id="btnTambahKategori">
                         Tambah Kategori
+                        <i class="fas fa-plus-circle ps-1"></i>
                     </button>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <table class="table table-bordered table-responsive table-light table-striped shadow-sm"
-                        id="tabel_master-kategori" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Jenis</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($kategori as $data)
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-responsive table-light table-striped shadow-sm"
+                            id="tabel_master-kategori" width="100%">
+                            <thead>
                                 <tr>
-                                    <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->jenis }}</td>
-                                    <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditKategori"
-                                            data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
-                                            data-jenis="{{ $data->jenis }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{{ url('Kategori/hapus_kategori') }}/" class="btn btn-danger tombol-hapus"
-                                            data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
-                                        <form id="form-hapus" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
+                                    <th scope="col" class="text-center">Nama</th>
+                                    <th scope="col" class="text-center">Jenis</th>
+                                    <th scope="col" class="text-center">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    {{-- <a class="btn btn-primary btn-lg text-light fw-bolder"
+                            </thead>
+                            <tbody>
+                                @foreach ($kategori as $data)
+                                    <tr>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jenis }}</td>
+                                        <td class="text-center">
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-warning shadow-warning mx-2 btnEditKategori"
+                                                data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
+                                                data-jenis="{{ $data->jenis }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url('Kategori/hapus_kategori') }}/"
+                                                class="btn btn-danger shadow-danger tombol-hapus"
+                                                data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
+                                            <form class="form-hapus" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        {{-- <a class="btn btn-primary shadow-light btn-lg text-light fw-bolder"
                         href="{{ url('keuangan/kategoriToPdf') }}">PDF
                 FILE</a> --}}
-                </div>
+                    </div>
         </section>
     </div>
 
@@ -86,8 +91,9 @@
                             <small class="form-text text-danger validation-error"></small>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-danger shadow-danger"
+                                data-bs-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary shadow-light">Simpan</button>
                         </div>
                     </form>
                 </div>

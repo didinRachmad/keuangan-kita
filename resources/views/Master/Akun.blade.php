@@ -17,51 +17,58 @@
         <section class="section">
             <div class="row mt-5">
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-primary mt-1 mb-3" data-bs-toggle="modal" id="btnTambahAkun">
+                    <button type="button" class="btn btn-primary shadow-light mt-1 mb-3" data-bs-toggle="modal"
+                        id="btnTambahAkun">
                         Tambah Akun
+                        <i class="fas fa-plus-circle ps-1"></i>
                     </button>
                 </div>
                 <div class="col-lg-12 mt-2">
-                    <table class="table table-bordered table-responsive table-light table-striped shadow-sm"
-                        id="tabel_master-akun" width="100%">
-                        <thead>
-                            <tr>
-                                <th>Nama</th>
-                                <th>Jenis</th>
-                                <th>Saldo Awal</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($akun as $data)
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered table-responsive table-light table-striped shadow-sm"
+                            id="tabel_master-akun" width="100%">
+                            <thead>
                                 <tr>
-                                    <td>{{ $data->nama }}</td>
-                                    <td>{{ $data->jenis }}</td>
-                                    <td class="text-end">{{ number_format($data->saldo_awal, 0, ',', '.') }}</td>
-                                    <td class="text-center">
-                                        <a href="javascript:void(0)" class="btn btn-warning mx-2 btnEditAkun"
-                                            data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
-                                            data-jenis="{{ $data->jenis }}"
-                                            data-saldo_awal="{{ number_format($data->saldo_awal, 0, ',', '.') }}">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-                                        <a href="{{ url('Akun/hapus_akun') }}/" class="btn btn-danger tombol-hapus"
-                                            data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
-                                        <form id="form-hapus" method="POST" style="display: none;">
-                                            @csrf
-                                            @method('DELETE')
-                                        </form>
-                                    </td>
+                                    <th scope="col" class="text-center">Nama</th>
+                                    <th scope="col" class="text-center">Jenis</th>
+                                    <th scope="col" class="text-center">Saldo Awal</th>
+                                    <th scope="col" class="text-center">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($akun as $data)
+                                    <tr>
+                                        <td>{{ $data->nama }}</td>
+                                        <td>{{ $data->jenis }}</td>
+                                        <td class="text-end">{{ number_format($data->saldo_awal, 0, ',', '.') }}</td>
+                                        <td class="text-center">
+                                            <a href="javascript:void(0)"
+                                                class="btn btn-warning shadow-warning mx-2 btnEditAkun"
+                                                data-id="{{ $data->id }}" data-nama="{{ $data->nama }}"
+                                                data-jenis="{{ $data->jenis }}"
+                                                data-saldo_awal="{{ number_format($data->saldo_awal, 0, ',', '.') }}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{{ url('Akun/hapus_akun') }}/"
+                                                class="btn btn-danger shadow-danger tombol-hapus"
+                                                data-id="{{ $data->id }}"><i class="fas fa-trash-alt"></i></a>
+                                            <form class="form-hapus" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
         </section>
     </div>
 
     <!-- Modal Tambah/Edit Akun -->
-    <div class="modal fade" id="modalAkun" tabindex="-1" aria-labelledby="modalAkunLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAkun" tabindex="-1" aria-labelledby="modalAkunLabel" aria-hidden="true"
+        data-bs-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -93,8 +100,9 @@
                             <small class="form-text text-danger validation-error"></small>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Kembali</button>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
+                            <button type="button" class="btn btn-danger shadow-danger"
+                                data-bs-dismiss="modal">Kembali</button>
+                            <button type="submit" class="btn btn-primary shadow-light">Simpan</button>
                         </div>
                     </form>
                 </div>

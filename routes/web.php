@@ -5,8 +5,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Master\AkunController;
 use App\Http\Controllers\Master\AnggotaController;
 use App\Http\Controllers\Master\KategoriController;
-use App\Http\Controllers\PemasukanController;
-use App\Http\Controllers\PengeluaranController;
+use App\Http\Controllers\ProfilController;
+use App\Http\Controllers\Transaksi\PemasukanController;
+use App\Http\Controllers\Transaksi\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 
 Auth::routes();
@@ -51,18 +53,29 @@ Route::prefix('Anggota')->middleware('auth')->group(function () {
     Route::delete('/hapus_anggota/{id}', [AnggotaController::class, 'hapus_anggota'])->name('Anggota.hapus_anggota');
 });
 
-Route::prefix('Pengeluaran')->middleware('auth')->group(function () {
-    Route::get('/', [PengeluaranController::class, 'index'])->name('Pengeluaran.index');
-    Route::post('/cari_pengeluaran', [PengeluaranController::class, 'cari_pengeluaran'])->name('Pengeluaran.cari_pengeluaran');
-    Route::post('/tambah_pengeluaran', [PengeluaranController::class, 'tambah_pengeluaran'])->name('Pengeluaran.tambah_pengeluaran');
-    Route::post('/ubah_pengeluaran/{id}', [PengeluaranController::class, 'ubah_pengeluaran'])->name('Pengeluaran.ubah_pengeluaran');
-    Route::delete('/hapus_pengeluaran/{id}', [PengeluaranController::class, 'hapus_pengeluaran'])->name('Pengeluaran.hapus_pengeluaran');
-});
-
 Route::prefix('Pemasukan')->middleware('auth')->group(function () {
     Route::get('/', [PemasukanController::class, 'index'])->name('Pemasukan.index');
     Route::post('/cari_pemasukan', [PemasukanController::class, 'cari_pemasukan'])->name('Pemasukan.cari_pemasukan');
     Route::post('/tambah_pemasukan', [PemasukanController::class, 'tambah_pemasukan'])->name('Pemasukan.tambah_pemasukan');
+    Route::get('/getAkun', [PemasukanController::class, 'getAkun'])->name('Pemasukan.getAkun');
+    Route::get('/getKategori', [PemasukanController::class, 'getKategori'])->name('Pemasukan.getKategori');
+    Route::get('/getPJ', [PemasukanController::class, 'getPJ'])->name('Pemasukan.getPJ');
     Route::post('/ubah_pemasukan/{id}', [PemasukanController::class, 'ubah_pemasukan'])->name('Pemasukan.ubah_pemasukan');
     Route::delete('/hapus_pemasukan/{id}', [PemasukanController::class, 'hapus_pemasukan'])->name('Pemasukan.hapus_pemasukan');
+});
+
+Route::prefix('Pengeluaran')->middleware('auth')->group(function () {
+    Route::get('/', [PengeluaranController::class, 'index'])->name('Pengeluaran.index');
+    Route::post('/cari_pengeluaran', [PengeluaranController::class, 'cari_pengeluaran'])->name('Pengeluaran.cari_pengeluaran');
+    Route::post('/tambah_pengeluaran', [PengeluaranController::class, 'tambah_pengeluaran'])->name('Pengeluaran.tambah_pengeluaran');
+    Route::get('/getAkun', [PengeluaranController::class, 'getAkun'])->name('Pengeluaran.getAkun');
+    Route::get('/getKategori', [PengeluaranController::class, 'getKategori'])->name('Pengeluaran.getKategori');
+    Route::get('/getPJ', [PengeluaranController::class, 'getPJ'])->name('Pengeluaran.getPJ');
+    Route::post('/ubah_pengeluaran/{id}', [PengeluaranController::class, 'ubah_pengeluaran'])->name('Pengeluaran.ubah_pengeluaran');
+    Route::delete('/hapus_pengeluaran/{id}', [PengeluaranController::class, 'hapus_pengeluaran'])->name('Pengeluaran.hapus_pengeluaran');
+});
+
+Route::prefix('Profil')->middleware('auth')->group(function () {
+    Route::get('/', [ProfilController::class, 'index'])->name('Profil.index');
+    Route::put('/update', [ProfilController::class, 'update'])->name('Profil.update');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Keluarga;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -41,6 +42,12 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        $keluargas = Keluarga::all();
+        return view('auth.register', compact('keluargas'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,9 +58,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'nama_keluarga' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:3', 'confirmed'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'id_keluarga' => ['nullable', 'exists:keluargas,id'],
+            'hubungan' => ['nullable', 'string', 'max:255'],
+            'tgl_lahir' => ['nullable', 'date'],
+            'no_telp' => ['nullable', 'string', 'max:20'],
+            'role' => ['required', 'string', 'in:Anggota,Admin'],
         ]);
     }
 
@@ -65,11 +76,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+        // Memeriksa jika id_keluarga kosong, maka buat keluarga baru
+        if (empty($data['id_keluarga'])) {
+            $family = Keluarga::create([
+                'nama_keluarga' => $data['name'] . "'s Family", // Atur nama keluarga berdasarkan nama pengguna
+            ]);
+            $data['id_keluarga'] = $family->id;
+        }
+
         return User::create([
             'name' => $data['name'],
-            'nama_keluarga' => $data['nama_keluarga'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'id_keluarga' => $data['id_keluarga'],
+            'hubungan' => $data['hubungan'],
+            'tgl_lahir' => $data['tgl_lahir'],
+            'no_telp' => $data['no_telp'],
+            'role' => $data['role'],
         ]);
     }
 }

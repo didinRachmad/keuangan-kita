@@ -11,19 +11,19 @@ class Kategori extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nama', 'jenis', 'user_id'];
+    protected $fillable = ['nama', 'jenis', 'id_keluarga'];
 
-    public static function getKategori($userId)
+    public static function getKategori($id_keluarga)
     {
-        return self::where('user_id', $userId)->get();
+        return self::where('id_keluarga', $id_keluarga)->orderBy('id', 'desc')->get();
     }
 
-    public static function createKategori($data, $user_id)
+    public static function createKategori($data, $id_keluarga)
     {
-        return DB::transaction(function () use ($data, $user_id) {
+        return DB::transaction(function () use ($data, $id_keluarga) {
             try {
                 $kategori = new self();
-                $kategori->user_id = $user_id;
+                $kategori->id_keluarga = $id_keluarga;
                 $kategori->nama = $data['nama'];
                 $kategori->jenis = $data['jenis'];
                 $kategori->save();
@@ -36,10 +36,10 @@ class Kategori extends Model
         });
     }
 
-    public static function updateKategori($id, $userId, $data)
+    public static function updateKategori($id, $id_keluarga, $data)
     {
-        return DB::transaction(function () use ($id, $userId, $data) {
-            $kategori = self::where('id', $id)->where('user_id', $userId)->first();
+        return DB::transaction(function () use ($id, $id_keluarga, $data) {
+            $kategori = self::where('id', $id)->where('id_keluarga', $id_keluarga)->first();
 
             if (!$kategori) {
                 return false;
@@ -57,11 +57,11 @@ class Kategori extends Model
         });
     }
 
-    public static function deleteKategori($user_id, $id)
+    public static function deleteKategori($id_keluarga, $id)
     {
-        return DB::transaction(function () use ($user_id, $id) {
+        return DB::transaction(function () use ($id_keluarga, $id) {
             try {
-                $kategori = self::where('user_id', $user_id)->where('id', $id)->first();
+                $kategori = self::where('id_keluarga', $id_keluarga)->where('id', $id)->first();
 
                 if ($kategori) {
                     $kategori->delete();

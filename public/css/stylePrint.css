@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+@media print {
+  .table tfoot tr td {
+    background-color: rgba(53, 64, 74, 0.7) !important;
+  }
+
+  .table {
+    color: black;
+    /* Warna teks */
+  }
+
+  .table th {
+    background-color: #021020 !important;
+    /* Background header */
+    color: white !important;
+    /* Warna teks header */
+    -webkit-print-color-adjust: exact;
+  }
+
+  .table td {
+    background-color: #E3F2FD !important;
+    /* Background sel */
+    -webkit-print-color-adjust: exact;
+  }
+}

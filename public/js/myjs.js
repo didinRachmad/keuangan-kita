@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready(function () {
     $(".datepicker").datepicker({
         format: "dd-mm-yyyy",
@@ -5,7 +7,11 @@ $(document).ready(function () {
         autoclose: true,
         todayHighlight: true,
         orientation: "bottom auto",
+        showWeekDays: true,
+        disableTouchKeyboard: true,
+        language: "id",
     });
+
     // Masking Uang
     // Format mata uang.
     $(".uang").mask("000.000.000.000", {
@@ -19,14 +25,14 @@ $(document).ready(function () {
 
     if (dataSukses) {
         Swal.fire({
-            title: title,
+            // title: title,
             text: "Berhasil " + dataSukses,
             icon: "success",
         });
     }
     if (dataGagal) {
         Swal.fire({
-            title: title,
+            // title: title,
             text: "Gagal : " + dataGagal,
             icon: "error",
         });
@@ -36,6 +42,8 @@ $(document).ready(function () {
         e.preventDefault();
         const href = $(this).attr("href");
         const id = $(this).data("id");
+        const form = $(this).closest("td").find(".form-hapus");
+
         Swal.fire({
             title: "Yakin Hapus Data",
             text: "",
@@ -47,8 +55,8 @@ $(document).ready(function () {
             reverseButtons: true,
         }).then((result) => {
             if (result.isConfirmed) {
-                $("#form-hapus").attr("action", href + id);
-                $("#form-hapus").submit();
+                form.attr("action", href + id);
+                form.submit();
             }
         });
     });
@@ -58,7 +66,7 @@ $(document).ready(function () {
         responsive: true,
         dom:
             "<'row'<'col-sm-6 col-md-2'l><'col-sm-6 col-md-6 text-right'B><'col-sm-12 col-md-4 text-right'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 table-responsive'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         buttons: [
             {
@@ -92,11 +100,13 @@ $(document).ready(function () {
                 },
             },
         ],
+        responsive: true,
+        pageLength: 25,
         lengthMenu: [
             [10, 25, 50, 100],
             [10, 25, 50, 100],
         ],
-        order: [[1, "asc"]],
+        order: [],
         columnDefs: [
             {
                 targets: [2],
@@ -111,7 +121,7 @@ $(document).ready(function () {
         responsive: true,
         dom:
             "<'row'<'col-sm-6 col-md-2'l><'col-sm-6 col-md-6 text-right'B><'col-sm-12 col-md-4 text-right'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 table-responsive'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         buttons: [
             {
@@ -145,11 +155,13 @@ $(document).ready(function () {
                 },
             },
         ],
+        responsive: true,
+        pageLength: 25,
         lengthMenu: [
             [10, 25, 50, 100],
             [10, 25, 50, 100],
         ],
-        order: [[1, "asc"]],
+        order: [],
         columnDefs: [
             {
                 targets: [2],
@@ -164,7 +176,7 @@ $(document).ready(function () {
         responsive: true,
         dom:
             "<'row'<'col-sm-6 col-md-2'l><'col-sm-6 col-md-6 text-right'B><'col-sm-12 col-md-4 text-right'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 table-responsive'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         buttons: [
             {
@@ -198,11 +210,13 @@ $(document).ready(function () {
                 },
             },
         ],
+        responsive: true,
+        pageLength: 25,
         lengthMenu: [
             [10, 25, 50, 100],
             [10, 25, 50, 100],
         ],
-        order: [[1, "asc"]],
+        order: [],
         columnDefs: [
             {
                 searchable: false,
@@ -217,7 +231,7 @@ $(document).ready(function () {
     $("#tabel-keuangan").DataTable({
         dom:
             "<'row'<'col-sm-6 col-md-2'l><'col-sm-6 col-md-6 text-right'B><'col-sm-12 col-md-4 text-right'f>>" +
-            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12 table-responsive'tr>>" +
             "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
         buttons: [
             {
@@ -245,14 +259,12 @@ $(document).ready(function () {
                 },
                 customize: function (doc) {
                     var tblBody = doc.content[1].table.body;
-
-                    // Menghitung total untuk kolom ke-3
+                    // Menghitung total untuk kolom ke-5
                     var total = 0;
                     tblBody.forEach(function (row, index) {
                         if (index !== 0) {
-                            // Menghindari header
                             var numericValue = parseFloat(
-                                row[2].text.split(".").join("")
+                                row[5].text.split(".").join("")
                             );
                             if (!isNaN(numericValue)) {
                                 total += numericValue;
@@ -263,32 +275,42 @@ $(document).ready(function () {
                     // Format total sesuai kebutuhan
                     var formattedTotal = total.toLocaleString("id-ID");
 
+                    // Menambahkan <tfoot> dengan total
+                    var tfootRow = [
+                        { text: "Total:", colSpan: 5, alignment: "center" },
+                        {},
+                        {},
+                        {},
+                        {},
+                        { text: formattedTotal, alignment: "center" },
+                    ];
+                    doc.content[1].table.body.push(tfootRow);
+
                     // Menambahkan footer ke setiap halaman
-                    var footer = function (page, pages) {
-                        return {
-                            columns: [
-                                {
-                                    text: "Total:",
-                                    alignment: "right",
-                                    margin: [0, 10, 0, 0],
-                                    width: "auto",
-                                },
-                                { text: "", alignment: "center", width: "*" },
-                                {
-                                    text: formattedTotal,
-                                    alignment: "center",
-                                    width: "*",
-                                },
-                            ],
-                            margin: [30, 0],
-                        };
-                    };
+                    // var footer = function (page, pages) {
+                    //     return {
+                    //         columns: [
+                    //             {
+                    //                 text: "Total:",
+                    //                 alignment: "right",
+                    //                 margin: [0, 10, 0, 0],
+                    //                 width: "auto",
+                    //             },
+                    //             { text: "", alignment: "center", width: "*" },
+                    //             {
+                    //                 text: formattedTotal,
+                    //                 alignment: "center",
+                    //                 width: "*",
+                    //             },
+                    //         ],
+                    //         margin: [30, 0],
+                    //     };
+                    // };
 
                     doc.styles.tableFooter = {
                         bold: true,
                         border: "1px solid black",
                     };
-                    doc["footer"] = footer;
 
                     // Penyesuaian gaya untuk border footer
                     doc.styles["footer"] = {
@@ -324,11 +346,11 @@ $(document).ready(function () {
                             var table = $(this);
                             var total = 0;
 
-                            // Menghitung total dari kolom ke-3
+                            // Menghitung total dari kolom ke-4
                             table.find("tbody tr").each(function () {
                                 var row = $(this);
                                 var cellText = row
-                                    .find("td:nth-child(3)")
+                                    .find("td:nth-child(5)")
                                     .text();
                                 var numericValue = parseFloat(
                                     cellText.split(".").join("")
@@ -341,7 +363,7 @@ $(document).ready(function () {
                             // Menambahkan footer dengan total
                             var formattedTotal = total.toLocaleString("id-ID");
                             table.append(
-                                '<tfoot><tr><td colspan="2" class="text-center">Total:</td><td>' +
+                                '<tfoot><tr><td colspan="5" class="text-center">Total:</td><td>' +
                                     formattedTotal +
                                     "</td></tr></tfoot>"
                             );
@@ -350,18 +372,16 @@ $(document).ready(function () {
             },
         ],
         responsive: true,
+        pageLength: 25,
         lengthMenu: [
             [10, 25, 50, 100],
             [10, 25, 50, 100],
         ],
-        order: [[1, "asc"]],
+        order: [],
         columnDefs: [
             {
-                targets: [3],
+                targets: [6],
                 className: "no-export",
-            },
-            {
-                targets: [3],
                 orderable: false,
             },
         ],
@@ -369,14 +389,14 @@ $(document).ready(function () {
             var api = this.api(),
                 data;
             var totalSalary = api
-                .column(2, { page: "current" })
+                .column(5, { page: "current" })
                 .data()
                 .reduce(function (a, b) {
                     var numericValue = parseFloat(b.split(".").join(""));
                     return a + numericValue;
                 }, 0);
             var formattedTotal = totalSalary.toLocaleString("id-ID");
-            $(api.column(2).footer()).html(formattedTotal);
+            $(api.column(5).footer()).html(formattedTotal);
         },
     });
 });
